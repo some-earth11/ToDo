@@ -52,3 +52,7 @@ If you encounter any CSS issues or find areas where the styling can be improved,
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
+## Screenshots
+
+![Screenshot 1](/SS1.png)
+
