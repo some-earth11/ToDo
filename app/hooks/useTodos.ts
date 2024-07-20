@@ -8,21 +8,15 @@ export interface Todo {
 
 const useTodos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    console.log('Loading...');
-    const timer = setTimeout(() => {
-      const storedTodos = localStorage.getItem('todos');
-      if (storedTodos) {
-        setTodos(JSON.parse(storedTodos));
-      }
-      setLoading(false);
-      console.log('Loaded');
-    }, 2000); // Simulate delay for lazy loading
-
-    return () => clearTimeout(timer);
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
