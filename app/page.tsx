@@ -5,10 +5,11 @@ import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import Footer from "./components/Footer";
 import useTodos, { Todo } from "./hooks/useTodos";
+import Loader from "./components/Loader";
 
 export default function Home() {
   const [todoInput, setTodoInput] = useState<string>('');
-  const { todos, setTodos } = useTodos();
+  const { todos, setTodos, loading } = useTodos();
 
   const addTodo = () => {
     if (todoInput.trim() !== '') {
@@ -36,7 +37,9 @@ export default function Home() {
         <div className="todo-container rounded-2xl min-w-[85vw] min-h-[85vh] flex flex-col justify-start bg-white text-red-400 shadow-2xl">
           <Header resetTodos={resetTodos} />
           <TodoInput todoInput={todoInput} setTodoInput={setTodoInput} addTodo={addTodo} />
-          <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+          <div className="flex items-center justify-center">
+          {loading? <Loader /> : <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />}
+          </div>
         </div>
       </main>
       <Footer />
